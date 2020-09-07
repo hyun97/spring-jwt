@@ -1,0 +1,57 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.3.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Starter
+    implementation 'org.springframework.boot:spring-boot-starter'
+    // Web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    // Devtools
+    implementation 'org.springframework.boot:spring-boot-devtools'
+    // JDBC
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    // Mysql
+    runtimeOnly("mysql:mysql-connector-java")
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    // StringUtils
+    implementation 'org.apache.commons:commons-lang3:3.10'
+    // Log4jdbc
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+    // Mybatis
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+    // Jwt
+    compile 'io.jsonwebtoken:jjwt:0.9.1'
+    // Test
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    // Eureka
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR7"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
